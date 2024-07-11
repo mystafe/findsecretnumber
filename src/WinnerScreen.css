@@ -62,3 +62,17 @@
 .restart-button:hover {
   background-color: #218838;
 }
+
+/* Mobil uyumluluk için medya sorguları */
+@media (max-width: 768px) {
+  .winner-screen {
+    height: 70vh; /* Mobilde yükseklik ayarlandı */
+    width: 90vw; /* Mobilde genişlik ayarlandı */
+    padding: 15px; /* Mobilde padding küçültüldü */
+  }
+
+  .restart-button {
+    font-size: 14px; /* Mobilde font boyutu küçültüldü */
+    padding: 8px 16px; /* Mobilde padding küçültüldü */
+  }
+}

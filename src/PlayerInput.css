@@ -19,14 +19,14 @@
 }
 
 label {
-  margin-right: 5px;
+  margin-right: 10px;
   min-width: 80px;
 }
 
 input[type="text"] {
   margin-right: 10px;
   flex: 1;
-  padding: 4px;
+  padding: 5px;
   border: 1px solid #ddd;
   border-radius: 5px;
   min-width: 150px; /* Minimum genişlik eklendi */
@@ -34,7 +34,7 @@ input[type="text"] {
 
 input[type="color"] {
   margin-left: 10px;
-  width: 45px; /* Simge boyutunu küçülttük */
+  width: 30px; /* Simge boyutunu küçülttük */
   height: 30px; /* Simge boyutunu küçülttük */
   border: none;
   cursor: pointer;
@@ -44,7 +44,7 @@ input[type="color"] {
   background: none;
   border: none;
   cursor: pointer;
-  margin-left: 0px;
+  margin-left: 10px;
   padding: 0;
 }
 
@@ -111,4 +111,59 @@ input[type="color"] {
 
 .start-game-button:hover {
   background-color: #218838;
+}
+
+/* Mobil uyumluluk için medya sorguları */
+@media (max-width: 768px) {
+  .player-input {
+    width: 100%; /* Mobilde tam genişlik */
+    margin-bottom: 15px;
+  }
+
+  .player-name-color {
+    flex-direction: column; /* Mobilde dikey hizalama */
+    align-items: flex-start;
+  }
+
+  label {
+    margin-bottom: 5px; /* Mobilde alt boşluk eklendi */
+  }
+
+  input[type="text"] {
+    width: calc(100% - 20px); /* Mobilde genişlik ayarlandı */
+    margin-bottom: 10px; /* Mobilde alt boşluk eklendi */
+  }
+
+  input[type="color"] {
+    width: 40px; /* Mobilde genişletildi */
+    height: 40px; /* Mobilde genişletildi */
+  }
+
+  .remove-player-button {
+    margin-top: 10px; /* Mobilde üst boşluk eklendi */
+  }
+
+  .additional-settings {
+    align-items: flex-start; /* Mobilde sola hizalama */
+  }
+
+  .add-player-button {
+    width: 100%; /* Mobilde tam genişlik */
+    justify-content: center; /* Mobilde ortalama */
+  }
+
+  .digit-length-container {
+    width: 100%; /* Mobilde tam genişlik */
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .digit-length-label, .digit-length-select {
+    width: calc(50% - 10px); /* Mobilde yarı genişlik */
+  }
+
+  .start-game-button {
+    width: 100%; /* Mobilde tam genişlik */
+    margin-top: 20px; /* Mobilde üst boşluk eklendi */
+  }
 }

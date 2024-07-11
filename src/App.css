@@ -126,3 +126,34 @@ button:hover {
   50% { background-color: #f8d7da; }
   100% { background-color: #fff; }
 }
+
+/* Mobil uyumluluk için medya sorguları */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    max-width: 90%; /* Genişliği %90'a düşürüldü */
+  }
+
+  .language-toggle img {
+    width: 30px;
+    height: 20px;
+  }
+
+  .result {
+    font-size: 16px;
+  }
+
+  input[type="text"], button {
+    padding: 8px;
+    width: calc(100% - 16px);
+    margin: 8px 0;
+  }
+
+  button {
+    padding: 8px 16px;
+  }
+
+  footer {
+    font-size: 12px;
+  }
+}

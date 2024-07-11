@@ -98,3 +98,33 @@ button:hover {
   50% { background-color: #f8d7da; }
   100% { background-color: #fff; }
 }
+
+/* Mobil uyumluluk için medya sorguları */
+@media (max-width: 768px) {
+  .player {
+    width: calc(100% - 20px); /* Mobilde tam genişlik */
+    margin: 10px 0; /* Üst ve alt boşluk ayarlandı */
+  }
+
+  .player-name {
+    font-size: 14px; /* Mobilde font boyutu küçültüldü */
+  }
+
+  .player-score {
+    font-size: 10px; /* Mobilde font boyutu küçültüldü */
+  }
+
+  .result {
+    font-size: 8px; /* Mobilde font boyutu küçültüldü */
+  }
+
+  input[type="text"], button {
+    width: calc(100% - 16px); /* Mobilde genişlik ayarlandı */
+    padding: 6px; /* Mobilde padding küçültüldü */
+    margin: 8px 0; /* Mobilde margin küçültüldü */
+  }
+
+  button {
+    padding: 6px 12px; /* Mobilde padding küçültüldü */
+  }
+}
