@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import chairIcon from './chair-icon.png'; // Koltuk ikonunun yolu
+import trashIcon from './trash-icon.png'; // Çöp ikonunun yolu
 import './PlayerInput.css'; // CSS dosyasını import edelim
 
 const lightColors = [
@@ -42,6 +43,14 @@ const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, s
     }
   };
 
+  const handleRemovePlayer = (index) => {
+    if (numPlayers > 1) {
+      const newPlayers = players.filter((_, i) => i !== index);
+      setNumPlayers(numPlayers - 1);
+      setPlayers(newPlayers);
+    }
+  };
+
   const handleKeyPress = (event, index) => {
     if (event.key === 'Enter') {
       event.preventDefault(); // Formun submit edilmesini engelle
@@ -73,6 +82,7 @@ const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, s
               onChange={(e) => handleNameChange(index, e.target.value)}
               onKeyPress={(e) => handleKeyPress(e, index)}
               placeholder={`${messages[language].player1Name.split(' ')[0]} ${index + 1}`}
+              style={{ flex: '1' }} // Esneklik için stil eklendi
             />
             <input
               type="color"
@@ -80,6 +90,11 @@ const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, s
               onChange={(e) => handleColorChange(index, e.target.value)}
               className="color-picker"
             />
+            {numPlayers > 1 && (
+              <button className="remove-player-button" onClick={() => handleRemovePlayer(index)}>
+                <img src={trashIcon} alt="Remove Player" className="trash-icon" />
+              </button>
+            )}
           </div>
         </div>
       ))}

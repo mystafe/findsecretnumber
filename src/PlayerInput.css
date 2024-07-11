@@ -1,38 +1,64 @@
+#name-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .player-input {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  width: 45%; /* İki oyuncunun yan yana gelebilmesi için genişlik ayarlandı */
 }
 
 .player-name-color {
   display: flex;
   align-items: center;
-  flex: 1;
+  width: 100%;
+  font-size: 1.2em; /* Yazı boyutunu büyüttük */
 }
 
 label {
-  margin-right: 10px;
+  margin-right: 5px;
   min-width: 80px;
 }
 
 input[type="text"] {
   margin-right: 10px;
   flex: 1;
+  padding: 4px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  min-width: 150px; /* Minimum genişlik eklendi */
 }
 
-.color-picker {
+input[type="color"] {
   margin-left: 10px;
-  width: 30px; /* Simge boyutunu küçülttük */
+  width: 45px; /* Simge boyutunu küçülttük */
   height: 30px; /* Simge boyutunu küçülttük */
   border: none;
   cursor: pointer;
 }
 
+.remove-player-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 0px;
+  padding: 0;
+}
+
+.trash-icon {
+  width: 16px; /* Boyutu küçülttük */
+  height: 16px; /* Boyutu küçülttük */
+}
+
 .additional-settings {
   display: flex;
+  flex-direction: column; /* Tek sütun halinde düzenleme */
   align-items: center;
+  width: 100%; /* Genişliği ayarlandı */
   margin-top: 20px;
-  justify-content: space-between;
 }
 
 .add-player-button {
@@ -44,7 +70,8 @@ input[type="text"] {
   color: #fff;
   border: none;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background 0.3s;
+  margin-bottom: 10px; /* Alt boşluk eklendi */
 }
 
 .add-player-button:hover {
@@ -67,18 +94,15 @@ input[type="text"] {
 }
 
 .digit-length-select {
-  padding: 10px;
-  width: 120px; /* Genişliği artırıldı */
+  padding: 5px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
 }
 
 .start-game-button {
-  display: block;
-  margin: 20px auto 0;
-  padding: 10px 20px;
   background-color: #28a745;
   color: #fff;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;

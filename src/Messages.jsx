@@ -3,7 +3,7 @@ export const messages = {
     title: 'Number Guessing Game',
     player1Name: 'Player 1 Name:',
     player2Name: 'Player 2 Name:',
-    digitLength: 'Number Length:',
+    digitLength: 'Digit Length:',
     startButton: 'Start Game',
     guessPlaceholder: 'Enter your guess',
     guessButton: 'Make Guess',
@@ -19,7 +19,8 @@ export const messages = {
     red: 'Incorrect',
     winMessage: 'wins the game!',
     secretNumbersTitle: 'Secret Numbers',
-    restartButton: 'Restart Game'
+    restartButton: 'Restart Game',
+    footer: 'This game was developed by Mustafa Evleksiz. 2024'
   },
   tr: {
     title: 'Sayı Tahmin Oyunu',
@@ -41,13 +42,14 @@ export const messages = {
     red: 'Hatalı',
     winMessage: 'oyunu kazandı!',
     secretNumbersTitle: 'Gizli Sayılar',
-    restartButton: 'Oyunu Yeniden Başlat'
+    restartButton: 'Oyunu Yeniden Başlat',
+    footer: 'Bu oyun Mustafa Evleksiz tarafından geliştirilmiştir. 2024'
   },
   de: {
     title: 'Zahlenratespiel',
     player1Name: 'Spieler 1 Name:',
     player2Name: 'Spieler 2 Name:',
-    digitLength: 'Zahlenlänge:',
+    digitLength: 'Ziffernlänge:',
     startButton: 'Spiel Starten',
     guessPlaceholder: 'Geben Sie Ihre Vermutung ein',
     guessButton: 'Vermutung machen',
@@ -63,13 +65,14 @@ export const messages = {
     red: 'Falsch',
     winMessage: 'gewinnt das Spiel!',
     secretNumbersTitle: 'Geheime Zahlen',
-    restartButton: 'Spiel Neustarten'
+    restartButton: 'Spiel Neustarten',
+    footer: 'Dieses Spiel wurde von Mustafa Evleksiz entwickelt. 2024'
   },
   es: {
     title: 'Juego de Adivinanza de Números',
     player1Name: 'Nombre del Jugador 1:',
     player2Name: 'Nombre del Jugador 2:',
-    digitLength: 'Longitud del Número:',
+    digitLength: 'Longitud del Dígito:',
     startButton: 'Comenzar Juego',
     guessPlaceholder: 'Ingresa tu adivinanza',
     guessButton: 'Hacer Adivinanza',
@@ -85,7 +88,8 @@ export const messages = {
     red: 'Incorrecto',
     winMessage: 'gana el juego!',
     secretNumbersTitle: 'Números Secretos',
-    restartButton: 'Reiniciar Juego'
+    restartButton: 'Reiniciar Juego',
+    footer: 'Este juego fue desarrollado por Mustafa Evleksiz. 2024'
   },
   ru: {
     title: 'Игра в Угадывание Чисел',
@@ -107,7 +111,8 @@ export const messages = {
     red: 'Неправильно',
     winMessage: 'выигрывает игру!',
     secretNumbersTitle: 'Секретные Числа',
-    restartButton: 'Перезапустить Игру'
+    restartButton: 'Перезапустить Игру',
+    footer: 'Эта игра была разработана Мустафой Эвлексизом. 2024'
   },
   ar: {
     title: 'لعبة تخمين الأرقام',
@@ -129,7 +134,8 @@ export const messages = {
     red: 'خاطئ',
     winMessage: 'يفوز باللعبة!',
     secretNumbersTitle: 'الأرقام السرية',
-    restartButton: 'أعد تشغيل اللعبة'
+    restartButton: 'أعد تشغيل اللعبة',
+    footer: 'تم تطوير هذه اللعبة من قبل مصطفى إيفليكسيز. 2024'
   },
   zh: {
     title: '数字猜谜游戏',
@@ -151,7 +157,8 @@ export const messages = {
     red: '错误',
     winMessage: '赢得了游戏！',
     secretNumbersTitle: '秘密数字',
-    restartButton: '重新开始游戏'
+    restartButton: '重新开始游戏',
+    footer: '这个游戏由穆斯塔法·埃夫莱克斯开发。 2024'
   },
   id: {
     title: 'Permainan Tebak Angka',
@@ -173,6 +180,7 @@ export const messages = {
     red: 'Salah',
     winMessage: 'menang dalam permainan!',
     secretNumbersTitle: 'Angka Rahasia',
-    restartButton: 'Mulai Ulang Permainan'
+    restartButton: 'Mulai Ulang Permainan',
+    footer: 'Permainan ini dikembangkan oleh Mustafa Evleksiz. 2024'
   }
 };

@@ -6,8 +6,11 @@ import './App.css';
 
 const App = () => {
   const [language, setLanguage] = useState(navigator.language.startsWith('tr') ? 'tr' : 'en');
-  const [numPlayers, setNumPlayers] = useState(1);
-  const [players, setPlayers] = useState([{ name: `${messages[language].player1Name.split(' ')[0]} 1`, color: '#ffebcd' }]);
+  const [numPlayers, setNumPlayers] = useState(2); // Varsayılan olarak 2 oyuncu
+  const [players, setPlayers] = useState([
+    { name: `${messages[language].player1Name.split(' ')[0]} 1`, color: '#ffebcd' },
+    { name: `${messages[language].player1Name.split(' ')[0]} 2`, color: '#ffcccb' }
+  ]);
   const [digitLength, setDigitLength] = useState(3);
   const [secretNumbers, setSecretNumbers] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
@@ -87,6 +90,9 @@ const App = () => {
           />
         )}
       </div>
+      <footer>
+        <p>{messages[language].footer}</p>
+      </footer>
     </div>
   );
 };
