@@ -37,6 +37,7 @@ input[type="color"] {
   width: 60px; /* Simge boyutunu küçülttük */
   height: 30px; /* Simge boyutunu küçülttük */
   border: none;
+  min-width: 30px;
   cursor: pointer;
 }
 
@@ -102,7 +103,7 @@ input[type="color"] {
 .start-game-button {
   background-color: #28a745;
   color: #fff;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;

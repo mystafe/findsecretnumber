@@ -21,11 +21,11 @@
 
 .player {
   background-color: #f1f1f1;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  width: calc(50% - 20px); /* Yan yana yerleşim için genişlik ayarlandı */
+  margin: 5px;
+  width: calc(50% - 10px); /* Yan yana yerleşim için genişlik ayarlandı */
   box-sizing: border-box; /* Padding ve border genişlik hesaplamalarına dahil edilir */
   position: relative;
 }
@@ -52,8 +52,8 @@
 }
 
 input[type="text"] {
-  padding: 8px; /* Padding küçültüldü */
-  margin: 10px 0;
+  padding: 5px; /* Padding küçültüldü */
+  margin: 5px 0;
   border-radius: 5px;
   border: 1px solid #ddd;
   width: calc(100% - 20px); /* Genişlik ayarlandı */
@@ -61,8 +61,8 @@ input[type="text"] {
 }
 
 button {
-  padding: 8px; /* Padding küçültüldü */
-  margin: 10px 0;
+  padding: 5px; /* Padding küçültüldü */
+  margin: 5px 0;
   border-radius: 5px;
   border: 1px solid #ddd;
   background-color: #007bff;
@@ -102,8 +102,8 @@ button:hover {
 /* Mobil uyumluluk için medya sorguları */
 @media (max-width: 768px) {
   .player {
-    width: calc(100% - 20px); /* Mobilde tam genişlik */
-    margin: 10px 0; /* Üst ve alt boşluk ayarlandı */
+    width: calc(100% - 1px); /* Mobilde tam genişlik */
+    margin: 2px 0; /* Üst ve alt boşluk ayarlandı */
   }
 
   .player-name {
@@ -120,8 +120,8 @@ button:hover {
 
   input[type="text"], button {
     width: calc(100% - 16px); /* Mobilde genişlik ayarlandı */
-    padding: 6px; /* Mobilde padding küçültüldü */
-    margin: 8px 0; /* Mobilde margin küçültüldü */
+    padding: 5px; /* Mobilde padding küçültüldü */
+    margin: 5px 0; /* Mobilde margin küçültüldü */
   }
 
   button {

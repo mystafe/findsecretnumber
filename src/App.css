@@ -12,11 +12,11 @@ body {
 
 .container {
   background: #fff;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 1000px;
+  max-width: 1200px;
   width: 100%;
   animation: fadeIn 1s;
 }
@@ -34,8 +34,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 5px;
+  margin-bottom: 25px;
 }
 
 .language-toggle img {
@@ -51,7 +51,7 @@ body {
 }
 
 footer {
-  margin-top: 20px;
+  margin-top: 5px;
   font-size: 14px;
   text-align: center;
 }
@@ -61,8 +61,8 @@ footer p {
 }
 
 .player {
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: 5px;
+  padding: 5px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -84,11 +84,11 @@ footer p {
 }
 
 input[type="text"], button {
-  padding: 10px;
-  margin: 10px 0;
+  padding: 5px;
+  margin: 5px 0;
   border-radius: 5px;
   border: 1px solid #ddd;
-  width: calc(100% - 24px);
+  width: calc(100% - 10px);
 }
 
 button {
@@ -104,7 +104,7 @@ button:hover {
 
 .result {
   font-size: 20px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .result-item {
@@ -150,7 +150,7 @@ button:hover {
 
 .score, .attempts {
   font-size: 18px;
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   justify-content: space-between;
 }
@@ -163,11 +163,11 @@ button:hover {
 /* Mobil uyumluluk için medya sorguları */
 @media (max-width: 768px) {
   body, .container, .player, .result, .score, .attempts, .restart-button, .language-toggle img {
-    transform: scale(0.7); /* %30 daha küçük ölçekle */
+    transform: scale(0.8); /* %30 daha küçük ölçekle */
   }
 
   .player-input, .digit-length-container, .start-game-button, .result-item {
-    transform: scale(0.7); /* %30 daha küçük ölçekle */
+    transform: scale(0.8); /* %30 daha küçük ölçekle */
     transform-origin: top left; /* Üst sol köşeden ölçekle */
   }
 }
