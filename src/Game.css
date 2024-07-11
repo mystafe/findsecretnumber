@@ -1,0 +1,18 @@
+/* Game.css */
+
+.current-player {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.player {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.player.current {
+  opacity: 1;
+}

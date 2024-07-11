@@ -1,0 +1,84 @@
+.language-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.language-toggle img {
+  width: 30px;
+  height: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.player-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.player-input label {
+  margin-right: 10px;
+}
+
+.player-input input[type="text"] {
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+.color-picker {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-player-button {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #5ac18e 0%, #4caf50 100%);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  color: #fff;
+  font-weight: bold;
+}
+
+.add-player-button:hover {
+  background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);
+}
+
+.chair-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.digit-length-label {
+  margin-top: 10px;
+}
+
+.digit-length-select {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: calc(100% - 24px);
+}
+
+.start-game-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.start-game-button:hover {
+  background-color: #218838;
+}

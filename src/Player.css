@@ -1,0 +1,107 @@
+.player {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.player.current {
+  opacity: 1;
+}
+
+input[type="text"], button {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: calc(100% - 24px);
+}
+
+button {
+  background-color: #28a745;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.result {
+  font-size: 20px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.result-item {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.result-item.correct {
+  background-color: #4caf50;
+}
+
+.result-item.partial {
+  background-color: #ffc107;
+}
+
+.result-item.incorrect {
+  background-color: #f44336;
+}
+
+/* Olumlu animasyon */
+.positive-animation {
+  animation: positiveEffect 2s forwards; /* Animasyon süresi uzatıldı */
+}
+
+@keyframes positiveEffect {
+  0% { background-color: #fff; }
+  50% { background-color: #d4edda; }
+  100% { background-color: #fff; }
+}
+
+/* Olumsuz animasyon */
+.negative-animation {
+  animation: negativeEffect 2s forwards; /* Animasyon süresi uzatıldı */
+}
+
+@keyframes negativeEffect {
+  0% { background-color: #fff; }
+  50% { background-color: #f8d7da; }
+  100% { background-color: #fff; }
+}
+
+.score, .attempts {
+  font-size: 18px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.score-value, .attempts-value {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Spinner */
+.spinner {
+  margin: 10px 0;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
