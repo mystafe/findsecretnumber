@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     const defaultPlayers = players.map((player, index) => ({
       ...player,
-      name: `${messages[language].player1Name.split(' ')[0]} ${index + 1}`
+      name: player.name.startsWith('Player') || player.name.startsWith('Oyuncu') ? `${messages[language].player1Name.split(' ')[0]} ${index + 1}` : player.name
     }));
     setPlayers(defaultPlayers);
   }, [language]);
@@ -44,6 +44,11 @@ const App = () => {
     setSecretNumbers(secrets);
     setPlayers(players);
     setGameStarted(true);
+  };
+
+  const resetGame = () => {
+    setSecretNumbers([]);
+    setGameStarted(false);
   };
 
   return (
@@ -77,6 +82,7 @@ const App = () => {
             players={players}
             secretNumbers={secretNumbers}
             digitLength={digitLength}
+            resetGame={resetGame}
           />
         )}
       </div>

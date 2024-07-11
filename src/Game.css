@@ -1,18 +1,100 @@
-/* Game.css */
+#game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Genişlik ayarlandı */
+}
 
 .current-player {
   font-size: 20px;
-  font-weight: bold;
   margin-bottom: 20px;
-  text-align: center;
-  color: #333;
+  font-weight: bold;
+}
+
+.player-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .player {
-  opacity: 0.5;
-  transition: opacity 0.3s;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: calc(50% - 20px); /* Yan yana yerleşim için genişlik ayarlandı */
+  box-sizing: border-box; /* Padding ve border genişlik hesaplamalarına dahil edilir */
+  position: relative;
 }
 
 .player.current {
-  opacity: 1;
+  border: 2px solid #28a745;
+}
+
+.player-name {
+  font-size: 16px; /* Font boyutu küçültüldü */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.player-score {
+  margin-top: 10px;
+  font-size: 12px; /* Font boyutu küçültüldü */
+}
+
+.result {
+  font-size: 10px; /* Font boyutu daha da küçültüldü */
+  margin-top: 10px;
+  white-space: pre-wrap; /* Satır içi alanları bozmadan metni sar */
+}
+
+input[type="text"] {
+  padding: 8px; /* Padding küçültüldü */
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: calc(100% - 20px); /* Genişlik ayarlandı */
+  box-sizing: border-box; /* Padding ve border genişlik hesaplamalarına dahil edilir */
+}
+
+button {
+  padding: 8px; /* Padding küçültüldü */
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: calc(100% - 20px); /* Genişlik ayarlandı */
+  box-sizing: border-box; /* Padding ve border genişlik hesaplamalarına dahil edilir */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Olumlu animasyon */
+.positive-animation {
+  animation: positiveEffect 1s forwards;
+}
+
+@keyframes positiveEffect {
+  0% { background-color: #fff; }
+  50% { background-color: #d4edda; }
+  100% { background-color: #fff; }
+}
+
+/* Olumsuz animasyon */
+.negative-animation {
+  animation: negativeEffect 1s forwards;
+}
+
+@keyframes negativeEffect {
+  0% { background-color: #fff; }
+  50% { background-color: #f8d7da; }
+  100% { background-color: #fff; }
 }

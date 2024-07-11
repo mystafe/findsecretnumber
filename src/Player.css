@@ -1,14 +1,14 @@
 .player {
-  opacity: 0.5;
-  transition: opacity 0.3s;
   margin-top: 20px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: opacity 1s ease-in-out; /* Opaklık geçiş süresini 1 saniyeye ayarla */
 }
 
-.player.current {
-  opacity: 1;
+.player:not(.current):not(.positive-animation):not(.negative-animation) {
+  opacity: 0.6; /* Transparanlığı biraz daha artır */
 }
 
 input[type="text"], button {
@@ -58,7 +58,7 @@ button:hover {
 
 /* Olumlu animasyon */
 .positive-animation {
-  animation: positiveEffect 2s forwards; /* Animasyon süresi uzatıldı */
+  animation: positiveEffect 0.7s forwards; /* Animasyon süresi 0.7 saniye */
 }
 
 @keyframes positiveEffect {
@@ -69,7 +69,7 @@ button:hover {
 
 /* Olumsuz animasyon */
 .negative-animation {
-  animation: negativeEffect 2s forwards; /* Animasyon süresi uzatıldı */
+  animation: negativeEffect 0.7s forwards; /* Animasyon süresi 0.7 saniye */
 }
 
 @keyframes negativeEffect {
@@ -88,20 +88,4 @@ button:hover {
 .score-value, .attempts-value {
   font-weight: bold;
   color: #007bff;
-}
-
-/* Spinner */
-.spinner {
-  margin: 10px 0;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #000;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }

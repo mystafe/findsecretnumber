@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import Player from './Player';
-import './Game.css'; // Game.css dosyasını import edelim
+import WinnerScreen from './WinnerScreen';
+import './Game.css';
 
-const Game = ({ language, messages, players, secretNumbers, digitLength }) => {
+const Game = ({ language, messages, players, secretNumbers, digitLength, resetGame }) => {
   const [currentPlayer, setCurrentPlayer] = useState(0);
-  const [results, setResults] = useState(Array(players.length).fill(''));
-  const [attempts, setAttempts] = useState(Array(players.length).fill(20));
-  const [scores, setScores] = useState(Array(players.length).fill(100));
+  const [results, setResults] = useState(players.map(() => ({ greenCount: 0, yellowCount: 0, redCount: 0 })));
+  const [attempts, setAttempts] = useState(players.map(() => 20));
+  const [scores, setScores] = useState(players.map(() => 100));
+  const [winner, setWinner] = useState(null);
 
   const makeGuess = (playerIndex, guess) => {
-    const secretNumber = secretNumbers[(playerIndex + 1) % players.length];
-    if (guess.length !== secretNumber.length) {
-      alert(messages[language].invalidLength);
-      return;
-    }
-    if (attempts[playerIndex] <= 0) {
-      alert(messages[language].outOfAttempts);
-      return;
-    }
-
+    const secretNumber = secretNumbers[playerIndex];
     const result = evaluateGuess(guess, secretNumber);
+
+    console.log(`Secret number for player ${playerIndex + 1}: ${secretNumber}`); // Gizli sayıları konsola yazdır
+
     const newResults = [...results];
     newResults[playerIndex] = result;
     setResults(newResults);
@@ -33,11 +29,10 @@ const Game = ({ language, messages, players, secretNumbers, digitLength }) => {
     setScores(newScores);
 
     if (result.greenCount === digitLength) {
-      alert(messages[language].win.replace('{player}', players[playerIndex].name).replace('{secret}', secretNumber));
-      return;
+      setTimeout(() => {
+        setWinner({ name: players[playerIndex].name, secretNumbers });
+      }, 2000); // 2 saniye sonra kazanan ekranını göster
     }
-
-    setCurrentPlayer((currentPlayer + 1) % players.length);
   };
 
   const evaluateGuess = (guess, secretNumber) => {
@@ -65,26 +60,39 @@ const Game = ({ language, messages, players, secretNumbers, digitLength }) => {
     return { greenCount, yellowCount, redCount };
   };
 
+  const onNextPlayer = () => {
+    setCurrentPlayer((currentPlayer + 1) % players.length);
+  };
+
   return (
     <div id="game">
-      <div className="current-player">
-        {messages[language].currentPlayer} {players[currentPlayer].name}
-      </div>
-      {players.map((player, index) => (
-        <Player
-          key={index}
-          name={player.name}
-          index={index}
-          language={language}
-          messages={messages}
-          result={results[index]}
-          attempts={attempts[index]}
-          score={scores[index]}
-          isCurrent={index === currentPlayer}
-          makeGuess={makeGuess}
-          color={player.color}
-        />
-      ))}
+      {winner ? (
+        <WinnerScreen winner={winner} messages={messages} language={language} resetGame={resetGame} />
+      ) : (
+        <>
+          <div className="current-player">
+            {messages[language].currentPlayer} {players[currentPlayer].name}
+          </div>
+          <div className="player-container">
+            {players.map((player, index) => (
+              <Player
+                key={index}
+                name={player.name}
+                index={index}
+                language={language}
+                messages={messages}
+                result={results[index]}
+                attempts={attempts[index]}
+                score={scores[index]}
+                isCurrent={index === currentPlayer}
+                makeGuess={makeGuess}
+                color={player.color}
+                onNextPlayer={onNextPlayer}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Player.css';
 
-const Player = ({ name, index, language, messages, result, attempts, score, isCurrent, makeGuess, color }) => {
+const Player = ({ name, index, language, messages, result, attempts, score, isCurrent, makeGuess, color, onNextPlayer }) => {
   const [guess, setGuess] = useState('');
-  const [checking, setChecking] = useState(false);
+  const [animation, setAnimation] = useState('');
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -20,17 +20,27 @@ const Player = ({ name, index, language, messages, result, attempts, score, isCu
 
   const handleGuess = () => {
     if (guess.length > 0) {
-      setChecking(true);
+      setAnimation(''); // Animasyonu sıfırla
+      const prevGreenCount = result.greenCount;
+      const prevRedCount = result.redCount;
+      makeGuess(index, guess);
+
       setTimeout(() => {
-        makeGuess(index, guess);
-        setGuess('');
-        setChecking(false);
-      }, 700); // Spinner göstermek için 0.7 saniye bekletme
+        if (result.greenCount > prevGreenCount) {
+          setAnimation('positive-animation');
+        } else if (result.redCount > prevRedCount) {
+          setAnimation('negative-animation');
+        }
+      }, 700); // Animasyonu hissettirmek için 0.7 saniye bekletme
+
+      setTimeout(() => {
+        onNextPlayer();
+      }, 1200); // Bir sonraki oyuncuya geçişi 0.5 saniye geciktir
     }
   };
 
   return (
-    <div className={`player ${isCurrent ? 'current' : ''}`} style={{ backgroundColor: color }}>
+    <div className={`player ${isCurrent ? 'current' : ''} ${animation}`} style={{ backgroundColor: color }}>
       <h2>{name}</h2>
       <input
         type="text"
@@ -45,8 +55,7 @@ const Player = ({ name, index, language, messages, result, attempts, score, isCu
       <button onClick={handleGuess} disabled={attempts <= 0}>
         {messages[language].guessButton}
       </button>
-      {checking && <div className="spinner"></div>}
-      <div className={`result ${result.greenCount > 0 ? 'positive-animation' : ''} ${result.redCount > 0 ? 'negative-animation' : ''}`}>
+      <div className={`result`}>
         {result && (
           <>
             <div className="result-item correct">

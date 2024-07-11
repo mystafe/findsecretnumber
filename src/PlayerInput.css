@@ -1,78 +1,84 @@
-.language-toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.language-toggle img {
-  width: 30px;
-  height: 20px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
 .player-input {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.player-input label {
-  margin-right: 10px;
+.player-name-color {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
-.player-input input[type="text"] {
+label {
   margin-right: 10px;
-  flex-grow: 1;
+  min-width: 80px;
+}
+
+input[type="text"] {
+  margin-right: 10px;
+  flex: 1;
 }
 
 .color-picker {
-  width: 40px;
-  height: 40px;
+  margin-left: 10px;
+  width: 30px; /* Simge boyutunu küçülttük */
+  height: 30px; /* Simge boyutunu küçülttük */
   border: none;
   cursor: pointer;
+}
+
+.additional-settings {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-between;
 }
 
 .add-player-button {
   display: flex;
   align-items: center;
-  margin: 10px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #5ac18e 0%, #4caf50 100%);
-  border: 1px solid #ddd;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  padding: 5px 10px;
+  background-color: #007bff;
   color: #fff;
-  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .add-player-button:hover {
-  background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);
+  background-color: #0056b3;
 }
 
 .chair-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+  width: 20px; /* Simge boyutunu küçülttük */
+  height: 20px; /* Simge boyutunu küçülttük */
+  margin-right: 5px;
+}
+
+.digit-length-container {
+  display: flex;
+  align-items: center;
 }
 
 .digit-length-label {
-  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .digit-length-select {
   padding: 10px;
-  margin: 10px 0;
+  width: 120px; /* Genişliği artırıldı */
   border-radius: 5px;
-  border: 1px solid #ddd;
-  width: calc(100% - 24px);
+  border: 1px solid #ccc;
 }
 
 .start-game-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
   background-color: #28a745;
   color: #fff;
-  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;

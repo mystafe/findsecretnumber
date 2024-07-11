@@ -2,15 +2,20 @@ import React, { useEffect, useRef } from 'react';
 import chairIcon from './chair-icon.png'; // Koltuk ikonunun yolu
 import './PlayerInput.css'; // CSS dosyasını import edelim
 
+const lightColors = [
+  '#FFB6C1', '#FFDAB9', '#E6E6FA', '#FFFACD', '#E0FFFF', '#F0FFF0', '#F5FFFA', '#F8F8FF', '#FFF0F5', '#FFFFE0'
+];
+
 const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, setPlayers, startGame, digitLength, setDigitLength }) => {
   const inputRefs = useRef([]);
 
   useEffect(() => {
-    // İlk oyuncu inputuna otomatik olarak odaklan
-    if (inputRefs.current[0]) {
-      inputRefs.current[0].focus();
-    }
-  }, [players]);
+    inputRefs.current.forEach((inputRef, index) => {
+      if (index === numPlayers - 1 && inputRef) {
+        inputRef.focus();
+      }
+    });
+  }, [numPlayers]);
 
   const handleNameChange = (index, value) => {
     const newPlayers = [...players];
@@ -28,7 +33,12 @@ const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, s
     if (numPlayers < 4) {
       const newNumPlayers = numPlayers + 1;
       setNumPlayers(newNumPlayers);
-      setPlayers([...players, { name: `${messages[language].player1Name.split(' ')[0]} ${newNumPlayers}`, color: `#${Math.floor(Math.random() * 16777215).toString(16)}` }]);
+      setPlayers([...players, { name: `${messages[language].player1Name.split(' ')[0]} ${newNumPlayers}`, color: lightColors[newNumPlayers - 1] || `#${Math.floor(Math.random() * 16777215).toString(16)}` }]);
+      setTimeout(() => {
+        if (inputRefs.current[newNumPlayers - 1]) {
+          inputRefs.current[newNumPlayers - 1].focus();
+        }
+      }, 100);
     }
   };
 
@@ -53,36 +63,42 @@ const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, s
     <div id="name-inputs">
       {players.map((player, index) => (
         <div key={index} className="player-input">
-          <label htmlFor={`player${index + 1}-name`}>{`${messages[language].player1Name.split(' ')[0]} ${index + 1}:`}</label>
-          <input
-            type="text"
-            id={`player${index + 1}-name`}
-            value={player.name}
-            ref={el => inputRefs.current[index] = el}
-            onChange={(e) => handleNameChange(index, e.target.value)}
-            onKeyPress={(e) => handleKeyPress(e, index)}
-            placeholder={`${messages[language].player1Name.split(' ')[0]} ${index + 1}`}
-          />
-          <input
-            type="color"
-            value={player.color}
-            onChange={(e) => handleColorChange(index, e.target.value)}
-            className="color-picker"
-          />
+          <div className="player-name-color">
+            <label htmlFor={`player${index + 1}-name`}>{`${messages[language].player1Name.split(' ')[0]} ${index + 1}`}</label>
+            <input
+              type="text"
+              id={`player${index + 1}-name`}
+              value={player.name}
+              ref={el => inputRefs.current[index] = el}
+              onChange={(e) => handleNameChange(index, e.target.value)}
+              onKeyPress={(e) => handleKeyPress(e, index)}
+              placeholder={`${messages[language].player1Name.split(' ')[0]} ${index + 1}`}
+            />
+            <input
+              type="color"
+              value={player.color}
+              onChange={(e) => handleColorChange(index, e.target.value)}
+              className="color-picker"
+            />
+          </div>
         </div>
       ))}
-      {numPlayers < 4 && (
-        <button className="add-player-button" onClick={handleAddPlayer}>
-          <img src={chairIcon} alt="Add Player" className="chair-icon" />
-          Yeni Oyuncu Ekle
-        </button>
-      )}
-      <label htmlFor="digit-length" className="digit-length-label">{messages[language].digitLength}</label>
-      <select id="digit-length" value={digitLength} onChange={(e) => setDigitLength(Number(e.target.value))} className="digit-length-select">
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+      <div className="additional-settings">
+        {numPlayers < 4 && (
+          <button className="add-player-button" onClick={handleAddPlayer}>
+            <img src={chairIcon} alt="Add Player" className="chair-icon" />
+            Yeni Oyuncu Ekle
+          </button>
+        )}
+        <div className="digit-length-container">
+          <label htmlFor="digit-length" className="digit-length-label">{messages[language].digitLength}</label>
+          <select id="digit-length" value={digitLength} onChange={(e) => setDigitLength(Number(e.target.value))} className="digit-length-select">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>
       <button className="start-game-button" onClick={handleStartGame}>{messages[language].startButton}</button>
     </div>
   );
