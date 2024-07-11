@@ -43,7 +43,7 @@ const Player = ({ name, index, language, messages, result, attempts, score, isCu
     <div className={`player ${isCurrent ? 'current' : ''} ${animation}`} style={{ backgroundColor: color }}>
       <h2>{name}</h2>
       <input
-        type="text"
+        type="number"
         id={`guess${index + 1}`}
         placeholder={messages[language].guessPlaceholder}
         value={guess}

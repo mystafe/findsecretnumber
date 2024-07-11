@@ -6,6 +6,7 @@
 
 .player-input {
   display: flex;
+  flex-direction: column; /* Mobilde dikey hizalama */
   align-items: center;
   margin-bottom: 10px;
   width: 45%; /* İki oyuncunun yan yana gelebilmesi için genişlik ayarlandı */
@@ -16,6 +17,7 @@
   align-items: center;
   width: 100%;
   font-size: 1.2em; /* Yazı boyutunu büyüttük */
+  margin-bottom: 10px; /* Mobilde alt boşluk eklendi */
 }
 
 label {
@@ -23,7 +25,7 @@ label {
   min-width: 80px;
 }
 
-input[type="text"] {
+input[type="number"] {
   margin-right: 10px;
   flex: 1;
   padding: 5px;
@@ -34,10 +36,9 @@ input[type="text"] {
 
 input[type="color"] {
   margin-left: 3px;
-  width: 60px; /* Simge boyutunu küçülttük */
+  width: 30px; /* Simge boyutunu küçülttük */
   height: 30px; /* Simge boyutunu küçülttük */
   border: none;
-  min-width: 30px;
   cursor: pointer;
 }
 
@@ -47,6 +48,7 @@ input[type="color"] {
   cursor: pointer;
   margin-left: 2px;
   padding: 0;
+  max-width: 20px; /* Maksimum genişlik eklendi */
 }
 
 .trash-icon {
@@ -114,6 +116,71 @@ input[type="color"] {
   background-color: #218838;
 }
 
+.result {
+  font-size: 16px; /* Yazı boyutu küçültüldü */
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Taşmaları önlemek için */
+}
+
+.result-item {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+  margin: 5px; /* Aralarına boşluk eklendi */
+  white-space: nowrap; /* Metni taşırmadan satır içi tut */
+  overflow: hidden; /* Taşan kısmı gizle */
+  text-overflow: ellipsis; /* Taşan kısım üç nokta ile gösterilsin */
+}
+
+.result-item.correct {
+  background-color: #4caf50;
+}
+
+.result-item.partial {
+  background-color: #ffc107;
+}
+
+.result-item.incorrect {
+  background-color: #f44336;
+}
+
+/* Olumlu animasyon */
+.positive-animation {
+  animation: positiveEffect 0.7s forwards; /* Animasyon süresi 0.7 saniye */
+}
+
+@keyframes positiveEffect {
+  0% { background-color: #fff; }
+  50% { background-color: #d4edda; }
+  100% { background-color: #fff; }
+}
+
+/* Olumsuz animasyon */
+.negative-animation {
+  animation: negativeEffect 0.7s forwards; /* Animasyon süresi 0.7 saniye */
+}
+
+@keyframes negativeEffect {
+  0% { background-color: #fff; }
+  50% { background-color: #f8d7da; }
+  100% { background-color: #fff; }
+}
+
+.score, .attempts {
+  font-size: 16px; /* Yazı boyutu küçültüldü */
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.score-value, .attempts-value {
+  font-weight: bold;
+  color: #007bff;
+}
+
 /* Mobil uyumluluk için medya sorguları */
 @media (max-width: 768px) {
   .player-input {
@@ -130,31 +197,18 @@ input[type="color"] {
     margin-bottom: 5px; /* Mobilde alt boşluk eklendi */
   }
 
-  input[type="text"] {
-    width: calc(100% - 20px); /* Mobilde genişlik ayarlandı */
+  input[type="number"] {
+    width: calc(100% - 10px); /* Mobilde genişlik ayarlandı */
     margin-bottom: 10px; /* Mobilde alt boşluk eklendi */
   }
 
   input[type="color"] {
     width: 40px; /* Mobilde genişletildi */
     height: 40px; /* Mobilde genişletildi */
-    /* align center */
-    display: flex;
-    justify-content: center;
-    margin-left: 50%;
-    align-items: center;
-    text-align: center;
   }
 
   .remove-player-button {
-    width: 40px; /* Mobilde genişletildi */
-    height: 40px; /* Mobilde genişletildi */
-    margin-top: 2px; /* Mobilde üst boşluk eklendi */
-    display: flex;
-    justify-content: center;
-    margin-left: 50%;
-    align-items: center;
-
+    margin-top: 10px; /* Mobilde üst boşluk eklendi */
   }
 
   .additional-settings {
