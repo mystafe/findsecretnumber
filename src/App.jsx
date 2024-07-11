@@ -3,7 +3,6 @@ import PlayerInput from './PlayerInput';
 import Game from './Game';
 import { messages } from './Messages'; // Messages.js dosyasını içe aktarın
 import './App.css';
-import './Game.css'; // Game.css dosyasını import edelim
 
 const App = () => {
   const [language, setLanguage] = useState(navigator.language.startsWith('tr') ? 'tr' : 'en');
@@ -59,7 +58,9 @@ const App = () => {
         <img src="https://www.countryflags.com/wp-content/uploads/germany-flag-png-large.png" onClick={() => setLanguage('de')} alt="Deutsch" />
         <img src="https://www.countryflags.com/wp-content/uploads/spain-flag-png-large.png" onClick={() => setLanguage('es')} alt="Español" />
         <img src="https://www.countryflags.com/wp-content/uploads/russia-flag-png-large.png" onClick={() => setLanguage('ru')} alt="Русский" />
-        <img src="https://www.countryflags.com/wp-content/uploads/saudi-arabia-flag-png-large.png" onClick={() => setLanguage('ar')} alt="العربية" />
+        <img src="https://www.countryflags.com/wp-content/uploads/united-arab-emirates-flag-png-large.png" onClick={() => setLanguage('ar')} alt="العربية" />
+        <img src="https://www.countryflags.com/wp-content/uploads/china-flag-png-large.png" onClick={() => setLanguage('zh')} alt="中文" />
+        <img src="https://www.countryflags.com/wp-content/uploads/indonesia-flag-png-large.png" onClick={() => setLanguage('id')} alt="Bahasa Indonesia" />
       </div>
       <div className="container">
         <h1>{messages[language].title}</h1>

@@ -29,16 +29,23 @@ body {
 }
 
 .language-toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .language-toggle img {
-  width: 30px;
-  height: 20px;
-  margin-left: 10px;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.language-toggle img:hover {
+  border-color: #007bff;
 }
 
 .player {
