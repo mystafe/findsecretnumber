@@ -25,7 +25,7 @@ const Player = ({ name, index, language, messages, result, attempts, score, isCu
         makeGuess(index, guess);
         setGuess('');
         setChecking(false);
-      }, 700); // Spinner göstermek için 1 saniye bekletme
+      }, 700); // Spinner göstermek için 0.7 saniye bekletme
     }
   };
 

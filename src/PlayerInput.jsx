@@ -10,7 +10,7 @@ const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, s
     if (inputRefs.current[0]) {
       inputRefs.current[0].focus();
     }
-  }, [inputRefs.current.length]); // inputRefs.current.length değiştiğinde tekrar çalışsın
+  }, [players]);
 
   const handleNameChange = (index, value) => {
     const newPlayers = [...players];

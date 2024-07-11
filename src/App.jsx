@@ -14,8 +14,11 @@ const App = () => {
   const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
-    setPlayers([{ name: `${messages[language].player1Name.split(' ')[0]} 1`, color: '#ffebcd' }]);
-    setNumPlayers(1); // Bu satır döngüyü engellemek için eklendi
+    const defaultPlayers = players.map((player, index) => ({
+      ...player,
+      name: `${messages[language].player1Name.split(' ')[0]} ${index + 1}`
+    }));
+    setPlayers(defaultPlayers);
   }, [language]);
 
   const generateRandomNumber = (length) => {
