@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import chairIcon from './chair-icon.png'; // Koltuk ikonunun yolu
 import trashIcon from './trash-icon.png'; // Çöp ikonunun yolu
 import './PlayerInput.css'; // CSS dosyasını import edelim
@@ -7,7 +7,9 @@ const lightColors = [
   '#FFB6C1', '#FFDAB9', '#E6E6FA', '#FFFACD', '#E0FFFF', '#F0FFF0', '#F5FFFA', '#F8F8FF', '#FFF0F5', '#FFFFE0'
 ];
 
-const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, setPlayers, startGame, digitLength, setDigitLength }) => {
+const PlayerInput = ({ language, messages, setPlayers, startGame, digitLength, setDigitLength }) => {
+  const [numPlayers, setNumPlayers] = useState(1); // Default olarak 1 oyuncu
+  const [players, updatePlayers] = useState([{ name: `${messages[language].player1Name.split(' ')[0]} 1`, color: lightColors[0] || `#${Math.floor(Math.random() * 16777215).toString(16)}` }]);
   const inputRefs = useRef([]);
 
   useEffect(() => {
@@ -21,20 +23,20 @@ const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, s
   const handleNameChange = (index, value) => {
     const newPlayers = [...players];
     newPlayers[index].name = value;
-    setPlayers(newPlayers);
+    updatePlayers(newPlayers);
   };
 
   const handleColorChange = (index, color) => {
     const newPlayers = [...players];
     newPlayers[index].color = color;
-    setPlayers(newPlayers);
+    updatePlayers(newPlayers);
   };
 
   const handleAddPlayer = () => {
     if (numPlayers < 4) {
       const newNumPlayers = numPlayers + 1;
       setNumPlayers(newNumPlayers);
-      setPlayers([...players, { name: `${messages[language].player1Name.split(' ')[0]} ${newNumPlayers}`, color: lightColors[newNumPlayers - 1] || `#${Math.floor(Math.random() * 16777215).toString(16)}` }]);
+      updatePlayers([...players, { name: `${messages[language].player1Name.split(' ')[0]} ${newNumPlayers}`, color: lightColors[newNumPlayers - 1] || `#${Math.floor(Math.random() * 16777215).toString(16)}` }]);
       setTimeout(() => {
         if (inputRefs.current[newNumPlayers - 1]) {
           inputRefs.current[newNumPlayers - 1].focus();
@@ -47,7 +49,7 @@ const PlayerInput = ({ language, messages, numPlayers, setNumPlayers, players, s
     if (numPlayers > 1) {
       const newPlayers = players.filter((_, i) => i !== index);
       setNumPlayers(numPlayers - 1);
-      setPlayers(newPlayers);
+      updatePlayers(newPlayers);
     }
   };
 

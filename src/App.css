@@ -1,3 +1,4 @@
+/* Genel stiller */
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
@@ -15,7 +16,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 1000px; /* Maksimum genişlik 1000 piksel yapıldı */
+  max-width: 1000px;
   width: 100%;
   animation: fadeIn 1s;
 }
@@ -63,6 +64,7 @@ footer p {
   margin-top: 20px;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .player.current {
@@ -105,9 +107,28 @@ button:hover {
   margin-top: 10px;
 }
 
+.result-item {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.result-item.correct {
+  background-color: #4caf50;
+}
+
+.result-item.partial {
+  background-color: #ffc107;
+}
+
+.result-item.incorrect {
+  background-color: #f44336;
+}
+
 /* Olumlu animasyon */
 .positive-animation {
-  animation: positiveEffect 1s forwards;
+  animation: positiveEffect 0.7s forwards; /* Animasyon süresi 0.7 saniye */
 }
 
 @keyframes positiveEffect {
@@ -118,7 +139,7 @@ button:hover {
 
 /* Olumsuz animasyon */
 .negative-animation {
-  animation: negativeEffect 1s forwards;
+  animation: negativeEffect 0.7s forwards; /* Animasyon süresi 0.7 saniye */
 }
 
 @keyframes negativeEffect {
@@ -127,33 +148,26 @@ button:hover {
   100% { background-color: #fff; }
 }
 
+.score, .attempts {
+  font-size: 18px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.score-value, .attempts-value {
+  font-weight: bold;
+  color: #007bff;
+}
+
 /* Mobil uyumluluk için medya sorguları */
 @media (max-width: 768px) {
-  .container {
-    padding: 10px;
-    max-width: 90%; /* Genişliği %90'a düşürüldü */
+  body, .container, .player, .result, .score, .attempts, .restart-button, .language-toggle img {
+    transform: scale(0.7); /* %30 daha küçük ölçekle */
   }
 
-  .language-toggle img {
-    width: 30px;
-    height: 20px;
-  }
-
-  .result {
-    font-size: 16px;
-  }
-
-  input[type="text"], button {
-    padding: 8px;
-    width: calc(100% - 16px);
-    margin: 8px 0;
-  }
-
-  button {
-    padding: 8px 16px;
-  }
-
-  footer {
-    font-size: 12px;
+  .player-input, .digit-length-container, .start-game-button, .result-item {
+    transform: scale(0.7); /* %30 daha küçük ölçekle */
+    transform-origin: top left; /* Üst sol köşeden ölçekle */
   }
 }

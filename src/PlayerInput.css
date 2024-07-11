@@ -33,8 +33,8 @@ input[type="text"] {
 }
 
 input[type="color"] {
-  margin-left: 10px;
-  width: 30px; /* Simge boyutunu küçülttük */
+  margin-left: 3px;
+  width: 60px; /* Simge boyutunu küçülttük */
   height: 30px; /* Simge boyutunu küçülttük */
   border: none;
   cursor: pointer;
@@ -44,7 +44,7 @@ input[type="color"] {
   background: none;
   border: none;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 2px;
   padding: 0;
 }
 
@@ -137,10 +137,23 @@ input[type="color"] {
   input[type="color"] {
     width: 40px; /* Mobilde genişletildi */
     height: 40px; /* Mobilde genişletildi */
+    /* align center */
+    display: flex;
+    justify-content: center;
+    margin-left: 50%;
+    align-items: center;
+    text-align: center;
   }
 
   .remove-player-button {
-    margin-top: 10px; /* Mobilde üst boşluk eklendi */
+    width: 40px; /* Mobilde genişletildi */
+    height: 40px; /* Mobilde genişletildi */
+    margin-top: 2px; /* Mobilde üst boşluk eklendi */
+    display: flex;
+    justify-content: center;
+    margin-left: 50%;
+    align-items: center;
+
   }
 
   .additional-settings {
