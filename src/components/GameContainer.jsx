@@ -1,12 +1,36 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Game from './Game';
+import WinnerScreen from './WinnerScreen';
 
-const GameContainer = ({ language, messages, players, digitLength, restartGame, endGame }) => {
+const GameContainer = ({ language, messages, players, digitLength, restartGame }) => {
   const [guesses, setGuesses] = useState(players.map(() => ''));
   const [results, setResults] = useState(players.map(() => ({ correct: 0, partial: 0, incorrect: 0 })));
   const [scores, setScores] = useState(players.map(() => 100));
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+  const [attempts, setAttempts] = useState(players.map(() => 20));
+  const [winner, setWinner] = useState(null);
+  const [winnerScore, setWinnerScore] = useState(0);
   const inputRefs = useRef([]);
+
+  useEffect(() => {
+    if (results.some(result => result.correct === digitLength)) {
+      const winnerIndex = results.findIndex(result => result.correct === digitLength);
+      const winner = players[winnerIndex];
+      const winnerScore = scores[winnerIndex];
+      setWinner(winner);
+      setWinnerScore(winnerScore);
+    }
+  }, [results, players, digitLength, scores]);
+
+  useEffect(() => {
+    if (inputRefs.current[currentPlayerIndex]) {
+      inputRefs.current[currentPlayerIndex].focus();
+    }
+  }, [currentPlayerIndex]);
+
+  useEffect(() => {
+    console.log('Secret Numbers:', players.map(player => player.secretNumber));
+  }, [players]);
 
   const handleGuessChange = (index, value) => {
     const newGuesses = [...guesses];
@@ -48,6 +72,11 @@ const GameContainer = ({ language, messages, players, digitLength, restartGame, 
   };
 
   const handleGuessSubmit = (index) => {
+    if (guesses[index].length !== digitLength) {
+      alert(messages[language].invalidLength);
+      return;
+    }
+
     const secretNumber = players[index].secretNumber;
     const result = checkGuess(guesses[index], secretNumber);
     const newResults = [...results];
@@ -60,7 +89,19 @@ const GameContainer = ({ language, messages, players, digitLength, restartGame, 
     }
     setScores(newScores);
 
-    setCurrentPlayerIndex((currentPlayerIndex + 1) % players.length); // Sıradaki oyuncuya geç
+    const newAttempts = [...attempts];
+    newAttempts[index] -= 1; // Deneme hakkını azalt
+    setAttempts(newAttempts);
+
+    const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    setCurrentPlayerIndex(nextPlayerIndex);
+
+    // Bir sonraki oyuncunun input alanına odaklanma
+    if (inputRefs.current[nextPlayerIndex]) {
+      setTimeout(() => {
+        inputRefs.current[nextPlayerIndex].focus();
+      }, 0); // SetTimeout ile odaklanma işlemi gerçekleştirilir
+    }
   };
 
   const handleKeyPress = (event, index) => {
@@ -70,36 +111,45 @@ const GameContainer = ({ language, messages, players, digitLength, restartGame, 
     }
   };
 
-  useEffect(() => {
-    if (results.some(result => result.correct === digitLength)) {
-      const winnerIndex = results.findIndex(result => result.correct === digitLength);
-      const winner = players[winnerIndex];
-      const winnerScore = scores[winnerIndex];
-      endGame(winner, winnerScore, players, scores);
-    }
-  }, [results, players, digitLength, scores, endGame]);
-
-  useEffect(() => {
-    if (inputRefs.current[currentPlayerIndex]) {
-      inputRefs.current[currentPlayerIndex].focus();
-    }
-  }, [currentPlayerIndex]);
+  const handleRestartGame = () => {
+    setGuesses(players.map(() => ''));
+    setResults(players.map(() => ({ correct: 0, partial: 0, incorrect: 0 })));
+    setScores(players.map(() => 100));
+    setAttempts(players.map(() => 20));
+    setCurrentPlayerIndex(0);
+    setWinner(null);
+  };
 
   return (
-    <Game
-      language={language}
-      messages={messages}
-      players={players}
-      digitLength={digitLength}
-      guesses={guesses}
-      results={results}
-      currentPlayerIndex={currentPlayerIndex}
-      inputRefs={inputRefs}
-      handleGuessChange={handleGuessChange}
-      handleGuessSubmit={handleGuessSubmit}
-      handleKeyPress={handleKeyPress}
-      restartGame={restartGame}
-    />
+    <>
+      {winner ? (
+        <WinnerScreen
+          language={language}
+          messages={messages}
+          winner={winner}
+          winnerScore={winnerScore}
+          players={players}
+          scores={scores}
+          restartGame={handleRestartGame}
+        />
+      ) : (
+        <Game
+          language={language}
+          messages={messages}
+          players={players}
+          digitLength={digitLength}
+          guesses={guesses}
+          results={results}
+          currentPlayerIndex={currentPlayerIndex}
+          inputRefs={inputRefs}
+          handleGuessChange={handleGuessChange}
+          handleGuessSubmit={handleGuessSubmit}
+          handleKeyPress={handleKeyPress}
+          restartGame={handleRestartGame}
+          attempts={attempts} // Deneme haklarını geçiriyoruz
+        />
+      )}
+    </>
   );
 };
 

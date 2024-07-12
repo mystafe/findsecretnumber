@@ -27,7 +27,7 @@ export const messages = {
     title: 'Sayı Tahmin Oyunu',
     player1Name: 'Oyuncu 1 Adı:',
     player2Name: 'Oyuncu 2 Adı:',
-    digitLength: 'Rakam Uzunluğu:',
+    digitLength: 'Sayı Uzunluğu:',
     startButton: 'Oyunu Başlat',
     guessPlaceholder: 'Tahmininizi girin',
     guessButton: 'Tahmin Yap',

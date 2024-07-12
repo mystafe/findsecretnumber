@@ -1,52 +1,57 @@
 import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import PlayerArea from './PlayerArea';
 import PlayerBox from './PlayerBox';
+import styled from 'styled-components';
 
-const Container = styled(motion.div)`
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 800px;
-  width: 100%;
-  margin-top: 20px; /* Tepe ile oyun alanı arasında boşluk */
-
-  @media (max-width: 768px) {
-    padding: 10px;
-    margin-top: 10px;
-  }
+const GameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 `;
 
-const RestartButton = styled(motion.button)`
-  background-color: #28a745;
+const PlayerArea = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+`;
+
+const RestartButton = styled.button`
+  background-color: #dc3545;
   color: #fff;
   padding: 10px 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s;
   margin-top: 20px;
-  font-size: 16px;
-  &:hover {
-    background-color: #218838;
-    transform: scale(1.05);
-  }
 
-  @media (max-width: 768px) {
-    padding: 5px 10px;
-    font-size: 14px;
+  &:hover {
+    background-color: #c82333;
   }
 `;
 
-const Game = ({ language, messages, players, digitLength, guesses, results, currentPlayerIndex, inputRefs, handleGuessChange, handleGuessSubmit, handleKeyPress, restartGame }) => {
+const Game = ({
+  language,
+  messages,
+  players,
+  guesses,
+  results,
+  currentPlayerIndex,
+  inputRefs,
+  handleGuessChange,
+  handleGuessSubmit,
+  handleKeyPress,
+  attempts, // Deneme hakları
+  restartGame, // Restart game fonksiyonu
+}) => {
   return (
-    <Container initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }}>
-      {players.map((player, index) => (
-        <PlayerArea key={index}>
+    <GameContainer>
+      <h2>{messages[language].currentPlayer} {players[currentPlayerIndex].name}</h2>
+      <PlayerArea>
+        {players.map((player, index) => (
           <PlayerBox
+            key={index}
             player={player}
             guess={guesses[index]}
             result={results[index]}
@@ -57,13 +62,15 @@ const Game = ({ language, messages, players, digitLength, guesses, results, curr
             index={index}
             messages={messages}
             language={language}
+            attempts={attempts} // Deneme haklarını geçiyoruz
+            inputRefs={inputRefs} // inputRefs'i geçiriyoruz
           />
-        </PlayerArea>
-      ))}
-      <RestartButton onClick={restartGame} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        ))}
+      </PlayerArea>
+      <RestartButton onClick={restartGame}>
         {messages[language].restartButton}
       </RestartButton>
-    </Container>
+    </GameContainer>
   );
 };
 

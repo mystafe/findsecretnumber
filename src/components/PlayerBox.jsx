@@ -51,24 +51,25 @@ const Button = styled(motion.button)`
   }
 `;
 
-const PlayerBox = ({ player, guess, result, onGuessChange, onGuessSubmit, onKeyPress, currentPlayerIndex, index, messages, language }) => {
+const PlayerBox = ({ player, guess, result, onGuessChange, onGuessSubmit, onKeyPress, currentPlayerIndex, index, messages, language, attempts, inputRefs }) => {
   return (
     <PlayerBoxContainer color={player.color}>
       <h3>{player.name}</h3>
-      <p>{messages[language].attempts}: {player.attempts}</p>
+      <p>{messages[language].attempts}: {attempts[index]}</p> {/* Deneme hakları gösteriliyor */}
       <Input
         type="text"
         value={guess}
         onChange={(e) => onGuessChange(index, e.target.value)}
         onKeyPress={(e) => onKeyPress(e, index)}
         placeholder={messages[language].guessPlaceholder}
-        disabled={index !== currentPlayerIndex} // Sadece sıradaki oyuncu tahmin yapabilir
+        disabled={index !== currentPlayerIndex || attempts[index] <= 0} // Sadece sıradaki oyuncu tahmin yapabilir ve deneme hakkı varsa
+        ref={(el) => (inputRefs && (inputRefs.current[index] = el))} // Input referansı atandı
       />
       <Button
         onClick={() => onGuessSubmit(index)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        disabled={index !== currentPlayerIndex} // Sadece sıradaki oyuncu tahmin yapabilir
+        disabled={index !== currentPlayerIndex || attempts[index] <= 0} // Sadece sıradaki oyuncu tahmin yapabilir ve deneme hakkı varsa
       >
         {messages[language].guessButton}
       </Button>
