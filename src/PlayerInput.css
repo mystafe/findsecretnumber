@@ -6,7 +6,7 @@
 
 .player-input {
   display: flex;
-  flex-direction: column; /* Mobilde dikey hizalama */
+  flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
   width: 45%; /* İki oyuncunun yan yana gelebilmesi için genişlik ayarlandı */
@@ -48,7 +48,6 @@ input[type="color"] {
   cursor: pointer;
   margin-left: 2px;
   padding: 0;
-  max-width: 20px; /* Maksimum genişlik eklendi */
 }
 
 .trash-icon {
@@ -183,6 +182,20 @@ input[type="color"] {
 
 /* Mobil uyumluluk için medya sorguları */
 @media (max-width: 768px) {
+  body, .container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 100%; /* Container genişliğini mobilde %100 yap */
+    padding: 0; /* Container iç boşluğunu kaldır */
+  }
+
+  #game {
+    width: 100%; /* Oyun alanını tam genişlik yap */
+  }
+
   .player-input {
     width: 100%; /* Mobilde tam genişlik */
     margin-bottom: 15px;

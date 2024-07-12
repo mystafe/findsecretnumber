@@ -104,7 +104,7 @@ const PlayerInput = ({ language, messages, setPlayers, startGame, digitLength, s
         {numPlayers < 4 && (
           <button className="add-player-button" onClick={handleAddPlayer}>
             <img src={chairIcon} alt="Add Player" className="chair-icon" />
-            Yeni Oyuncu Ekle
+            {messages[language].addPlayerButton}
           </button>
         )}
         <div className="digit-length-container">
