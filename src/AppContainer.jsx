@@ -6,13 +6,6 @@ const AppContainer = () => {
   const [language, setLanguage] = useState(navigator.language.startsWith('tr') ? 'tr' : 'en');
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
-  const [players, setPlayers] = useState([]);
-  const [scores, setScores] = useState([]);
-  const [winner, setWinner] = useState(null);
-  const [winnerScore, setWinnerScore] = useState(0);
-  const [digitLength, setDigitLength] = useState(3);
-  const [numPlayers, setNumPlayers] = useState(2); // numPlayers state eklendi
-
   const generateRandomNumber = (length) => {
     let number = '';
     while (number.length < length) {
@@ -23,6 +16,16 @@ const AppContainer = () => {
     }
     return number;
   };
+
+  const [players, setPlayers] = useState([
+    { name: `${messages[language].player1Name.split(' ')[0]} 1`, color: '#FFB6C1', secretNumber: generateRandomNumber(3) }
+  ]);
+  const [scores, setScores] = useState([100]);
+  const [winner, setWinner] = useState(null);
+  const [winnerScore, setWinnerScore] = useState(0);
+  const [digitLength, setDigitLength] = useState(3);
+  const [numPlayers, setNumPlayers] = useState(1); // numPlayers state eklendi
+
 
   const startGame = (players) => {
     const playersWithSecretNumbers = players.map(player => ({
@@ -46,12 +49,14 @@ const AppContainer = () => {
   const restartGame = () => {
     setGameStarted(false);
     setGameEnded(false);
-    setPlayers([]);
-    setScores([]);
+    setPlayers([
+      { name: `${messages[language].player1Name.split(' ')[0]} 1`, color: '#FFB6C1', secretNumber: generateRandomNumber(digitLength) }
+    ]);
+    setScores([100]);
     setWinner(null);
     setWinnerScore(0);
     setDigitLength(3);
-    setNumPlayers(2); // numPlayers sıfırlama
+    setNumPlayers(1); // numPlayers sıfırlama
   };
 
   return (

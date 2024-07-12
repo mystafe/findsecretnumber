@@ -72,10 +72,9 @@ const IconButton = styled(motion.button)`
 `;
 
 const PlayerInput = ({ language, messages, setPlayers, startGame, digitLength, setDigitLength }) => {
-  const [numPlayers, setNumPlayers] = useState(2); // Default olarak 2 oyuncu
+  const [numPlayers, setNumPlayers] = useState(1); // Default olarak 1 oyuncu
   const [players, updatePlayers] = useState([
-    { name: `${messages[language].player1Name.split(' ')[0]} 1`, color: '#FFB6C1' },
-    { name: `${messages[language].player1Name.split(' ')[0]} 2`, color: '#FFDAB9' }
+    { name: `${messages[language].player1Name.split(' ')[0]} 1`, color: '#FFB6C1' }
   ]);
   const inputRefs = useRef([]);
 
